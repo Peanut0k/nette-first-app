@@ -1,0 +1,14 @@
+{block content}
+
+    <h1>Můj blog</h1>
+
+    <div class="posts-list">
+        <div n:foreach="$posts as $post" class="post">
+            <h2><a n:href="Post:show $post->id">{$post->title}</a></h2>
+
+            <div>{$post->content|truncate:256}</div>
+
+            <div class="date">{$post->created_at|date:'F j, Y'}</div>
+        </div>
+    </div>
+{/block}

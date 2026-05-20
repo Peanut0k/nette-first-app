@@ -1,0 +1,24 @@
+{block content}
+
+<div class="page-card">
+    <h1 n:block="title">{$post->title}</h1>
+
+    <div class="post">{$post->content}</div>
+    <div class="date">{$post->created_at|date:'F j, Y'}</div>
+</div>
+
+<div class="comment-form">
+    <h2>Přidat komentář</h2>
+    {control commentForm}
+</div>
+
+<div class="comments">
+    <h2>Komentáře</h2>
+    <div n:foreach="$comments as $comment" class="comment">
+        <div class="name">{$comment->name}</div>
+        <div class="content">{$comment->content}</div>
+        <div class="date">{$comment->created_at|date:'F j, Y'}</div>
+    </div>
+</div>
+
+{/block}

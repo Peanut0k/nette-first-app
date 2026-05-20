@@ -1,0 +1,164 @@
+body {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #edf2f7;
+    color: #202428;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 980px;
+    padding: 1.75rem 1rem 2.5rem;
+}
+
+h1, h2 {
+    color: #111827;
+}
+
+h1 {
+    margin-bottom: 1.4rem;
+}
+
+.post {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+    padding: 1.35rem 1.45rem;
+    margin-bottom: 1.4rem;
+}
+
+.post h2 {
+    margin-top: 0;
+    margin-bottom: 0.65rem;
+    font-size: 1.5rem;
+}
+
+.post h2 a {
+    color: #0f172a;
+    text-decoration: none;
+}
+
+.post h2 a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.date {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 0.9rem;
+}
+
+.comment-form,
+.comments {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.35rem 1.45rem;
+    margin-bottom: 1.4rem;
+}
+
+.comment-form h2,
+.comments h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.comment {
+    border-top: 1px solid #e5e7eb;
+    padding: 0.85rem 0;
+}
+
+.comment:first-child {
+    border-top: none;
+}
+
+.comment .name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.comment .content {
+    margin: 0.35rem 0 0.65rem;
+    color: #334155;
+}
+
+.comment .date {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+nav.navbar {
+    border-radius: 1rem;
+}
+
+.navbar-brand img {
+    width: 32px;
+    height: 32px;
+}
+
+a {
+    color: #2563eb;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+form .form-control,
+form .form-select {
+    border-radius: 0.55rem;
+}
+
+button.btn-primary {
+    border-radius: 0.55rem;
+    min-width: 120px;
+}
+
+form input,
+form textarea,
+form select {
+    border-radius: 0.65rem;
+    border: 1px solid #cbd5e1;
+    padding: 0.85rem 1rem;
+    width: 100%;
+    box-shadow: none;
+    font: inherit;
+    margin-top: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+form textarea {
+    min-height: 8rem;
+    resize: vertical;
+}
+
+form label {
+    display: block;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.page-card,
+.login-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+    padding: 1.5rem 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-card {
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+}
+
+.login-card h1 {
+    margin-bottom: 1rem;
+}
+
+.alert {
+    border-radius: 0.9rem;
+}
