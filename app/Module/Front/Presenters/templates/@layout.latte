@@ -29,18 +29,21 @@
 								<a n:href="Homepage:default" class="nav-link">Home</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">Napsat</a>
+								<a n:if="$user->isLoggedIn()" n:href="Edit:create" class="nav-link">Nový příspěvek</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Link</a>
+								<a href="#" class="nav-link">Link</a>
+							 </li>
 							</li>
 						</ul>
 					</div>
 					<div class="ms-auto">
 						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link" href="/login">Login</a>
-							</li>
+							{if $user->isLoggedIn()}
+							<li><a n:href="Login:out">Odhlásit</a></li>
+						{else}
+							<li><a n:href="Login:in">Přihlásit</a></li>
+						{/if}
 						</ul>
 					</div>
 				</div>

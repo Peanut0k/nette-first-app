@@ -1,20 +1,12 @@
 <?php
+
 namespace App\Module\Front\Presenters;
 
 use Nette;
 use Nette\Application\UI\Form;
 
 final class LoginPresenter extends Nette\Application\UI\Presenter {
-  public function __construct(private Nette\Database\Explorer $database) {
-
-  }
-
-  public function renderLogin(): void {
-    
-  }
-
-  public function createComponentLoginForm(): Form
-  {
+  public function createComponentLoginForm(string $name): Form {
     $form = new Form;
     $form->addText('username', 'Uživatelské jméno')
       ->setRequired('Zadejte své uživatelské jméno.');
@@ -27,12 +19,21 @@ final class LoginPresenter extends Nette\Application\UI\Presenter {
     $form->onSuccess[] = [$this, 'loginFormSucceeded'];
     return $form;
   }
-
-  public function loginFormSucceeded(Form $form): void
-  {
+  public function loginFormSucceeded(Form $form): void {
     $data = $form->getValues();
+    try {
+		$this->getUser()->login($data->username, $data->password);
+    $this->flashMessage('Přihlášení bylo úspěšné.');
+		$this->redirect('Homepage:default');
 
-    $this->redirect('this');
+	} catch (Nette\Security\AuthenticationException $e) {
+		$form->addError('Nesprávné přihlašovací jméno nebo heslo.');
+	}
   }
-
+  public function actionOut(): void
+{
+	$this->getUser()->logout();
+	$this->flashMessage('Odhlášení bylo úspěšné.');
+	$this->redirect('Homepage:default');
+}
 }

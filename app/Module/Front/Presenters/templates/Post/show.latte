@@ -5,6 +5,7 @@
 
     <div class="post">{$post->content}</div>
     <div class="date">{$post->created_at|date:'F j, Y'}</div>
+    <a class="nav-link" n:if="$user->isLoggedIn()" n:href="Edit:edit $post->id">Upravit příspěvek</a>
 </div>
 
 <div class="comment-form">

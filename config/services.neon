@@ -1,2 +1,6 @@
 services:
 	- App\Router\RouterFactory::createRouter
+	- App\Model\PostFacade
+	- App\Model\Repositories\PostRepository
+	- App\Model\Repositories\CommentRepository
+	- App\Model\Repositories\UserRepository
