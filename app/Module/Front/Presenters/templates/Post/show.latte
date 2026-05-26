@@ -1,24 +1,60 @@
 {block content}
 
 <div class="page-card">
-    <h1 n:block="title">{$post->title}</h1>
-
-    <div class="post">{$post->content}</div>
-    <div class="date">{$post->created_at|date:'F j, Y'}</div>
-    <a class="nav-link" n:if="$user->isLoggedIn()" n:href="Edit:edit $post->id">Upravit příspěvek</a>
+    <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-start">
+        <div>
+            <h1 n:block="title">{$post->title}</h1>
+            <div class="meta">Published {$post->created_at|date:'F j, Y'}</div>
+        </div>
+        {if $authService->canEditPost($user, $post)}
+            <div class="btn-group" role="group">
+                <a class="btn btn-primary" n:href="Edit:edit $post->id">Edit Article</a>
+                <a class="btn btn-danger" n:href="Edit:edit $post->id" onclick="return confirm('Opravdu chcete smazat tento příspěvek?')">Delete Article</a>
+            </div>
+        {/if}
+    </div>
+    <div class="post mt-4">{$post->content}</div>
 </div>
 
-<div class="comment-form">
-    <h2>Přidat komentář</h2>
-    {control commentForm}
-</div>
+{if $authService->canCreateComment($user)}
+    <div class="form-card">
+        <h2>Add Comment</h2>
+        {control commentForm}
+    </div>
+{/if}
 
-<div class="comments">
-    <h2>Komentáře</h2>
-    <div n:foreach="$comments as $comment" class="comment">
-        <div class="name">{$comment->name}</div>
-        <div class="content">{$comment->content}</div>
-        <div class="date">{$comment->created_at|date:'F j, Y'}</div>
+<div class="section-card comments-section">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <h2>Comments</h2>
+        <span class="meta">{$comments->count()} comments</span>
+    </div>
+
+    <div n:if="!$comments->count()" class="text-muted">No comments have been added to this post yet.</div>
+
+    <div n:foreach="$comments as $comment" class="comment-card">
+        {if $editCommentId === $comment->id}
+            <h3>Edit Comment</h3>
+            {control editCommentForm}
+            <p><a class="btn btn-outline-secondary" n:href="this editCommentId => 0">Cancel Edit</a></p>
+        {else}
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-start">
+                <div>
+                    <div class="name">{$comment->name}</div>
+                    <div class="comment-body">{$comment->content}</div>
+                    <div class="meta">{$comment->created_at|date:'F j, Y'}</div>
+                </div>
+                {if $authService->canEditComment($user, $comment) || $authService->canDeleteComment($user, $comment)}
+                    <div class="comment-actions">
+                        {if $authService->canEditComment($user, $comment)}
+                            <a class="btn btn-outline-secondary" n:href="this editCommentId => $comment->id">Edit</a>
+                        {/if}
+                        {if $authService->canDeleteComment($user, $comment)}
+                            <a class="btn btn-danger" n:href="deleteComment! $comment->id" onclick="return confirm('Opravdu chcete smazat tento komentář?')">Delete</a>
+                        {/if}
+                    </div>
+                {/if}
+            </div>
+        {/if}
     </div>
 </div>
 

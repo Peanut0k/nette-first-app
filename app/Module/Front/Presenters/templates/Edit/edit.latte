@@ -1,12 +1,15 @@
 {block content}
-<h1>Upravit příspěvek</h1>
-{control postForm}
+<div class="page-card">
+    <h1>Edit Mission Report</h1>
+    <p class="text-muted">Edit the mission details or operational report.</p>
+    {control postForm}
 
-<hr>
-<section class="post-delete">
-	<h2>Smazat příspěvek</h2>
-	<p>Pokud chcete příspěvek odstranit, klikněte na tlačítko níže.</p>
-	{control deleteForm}
-</section>
+    <hr>
+    <section class="section-card">
+        <h2>Delete Mission Report</h2>
+        <p>If you wish to delete this mission report, use the button below. This action cannot be undone.</p>
+        {control deleteForm}
+    </section>
+</div>
 
   

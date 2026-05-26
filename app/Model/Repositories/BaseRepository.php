@@ -23,7 +23,7 @@ abstract class BaseRepository
 		return $this->getTable();
 	}
 
-	public function findById(int $id): ?Nette\Database\Table\ActiveRow
+	public function findById(int $id): Nette\Database\Table\ActiveRow
 	{
 		return $this->getTable()->get($id);
 	}
@@ -41,5 +41,26 @@ abstract class BaseRepository
   public function create(array $data): Nette\Database\Table\ActiveRow
   {
     return $this->getTable()->insert($data);
+  }
+
+  public function save(array $data): Nette\Database\Table\ActiveRow
+  {
+    $payload = $data;
+
+    if (isset($payload['id'])) {
+      unset($payload['id']);
+    }
+
+    $id = isset($data['id']) ? (int) $data['id'] : null;
+
+    if ($id > 0) {
+      $this->updateById($id, $payload);
+      $existing = $this->findById($id);
+      if ($existing !== null) {
+        return $existing;
+      }
+    }
+
+    return $this->create($payload);
   }
 }

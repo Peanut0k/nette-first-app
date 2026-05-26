@@ -16,7 +16,6 @@ di:
 		parameters: no
 		tags: no
 
-
 security:
-	users:
-		admin: heslo
+	authentication:
+		storage: session

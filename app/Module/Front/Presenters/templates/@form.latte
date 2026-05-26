@@ -13,7 +13,7 @@
 		{if $input->getOption(type) in [text, select, textarea]}
 			{input $input class => form-control}
 		{elseif $input->getOption(type) === button}
-			{input $input class => "btn btn-default"}
+			{input $input class => "btn btn-primary"}
 		{elseif $input->getOption(type) === checkbox}
 			<div class="checkbox">{input $input}</div>
 		{elseif $input->getOption(type) === radio}

@@ -1,6 +1,10 @@
 services:
+	authenticator: App\Model\Security\DatabaseAuthenticator
 	- App\Router\RouterFactory::createRouter
-	- App\Model\PostFacade
+	- App\Model\Facades\PostFacade
 	- App\Model\Repositories\PostRepository
 	- App\Model\Repositories\CommentRepository
 	- App\Model\Repositories\UserRepository
+	- App\Model\Repositories\RoleRepository
+	- App\Model\DTO\PostMapper
+	- App\Model\Services\AuthorizationService
